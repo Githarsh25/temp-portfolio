@@ -7,6 +7,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+         /* Desktop mode warning overlay */
+    #desktop-warning {
+      display: none; /* hidden by default */
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem;
+      color: white;
+    }
+
+    /* Show overlay on mobile (less than 1024px width) */
+    @media (max-width: 1024px) {
+      #desktop-warning {
+        display: flex;
+      }
+
+      /* Optional: blur or disable interaction with the main site */
+      body > *:not(#desktop-warning) {
+        filter: blur(2px);
+        pointer-events: none;
+        user-select: none;
+      }
+    }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* slate-50 */
@@ -55,6 +83,17 @@
     </style>
 </head>
 <body class="text-slate-700">
+     <!-- Desktop Mode Warning -->
+  <div id="desktop-warning">
+    <div>
+      <h2 class="text-3xl font-bold mb-4">Best Viewed on Desktop</h2>
+      <p class="text-lg">Please open this website on desktop site for best viewing experience. <br> otherwise just ignore </p>
+      <button onclick="document.getElementById('desktop-warning').style.display='none'" 
+              class="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition">
+        Close
+      </button>
+    </div>
+  </div>
 
     <!-- Header -->
     <header class="bg-white/90 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
@@ -274,5 +313,6 @@
     <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
+
 
 
